@@ -3,7 +3,7 @@
 Since their introduction in 2017, transformer-based language models took natural language processing by storm and are widely used in various applications, including question answering, machine translation, and text classification. One of the most used transformer models is BERT, which obtains state-of-the-art results in numerous benchmarks. Despite its popularity, the security vulnerability of the model against manipulated inputs existing in realistic scenarios is largely unknown, which is highly concerning given the increasing use in security-sensitive applications such as sentiment analysis and hate speech detection.
 The term "adversarial examples" describes inputs crafted by adversaries with the intention of causing a deep neural network to change its classification output. Previous efforts have shown that transformer models are vulnerable to strategically designed adversarial examples in the white-box setting, a case where the model architecture and parameters are accessible to the adversary. However, black-box attacks pose a more realistic scenario. Furthermore, natural adversarial examples are more likely to occure in a real-world setting than intentionally crafted examples. 
 
-This is the complementary code used in my Master's Thesis to explore the robustness of a BERT model used for the ABSA-task, a fine-grained sentiment analysis task that extracts both the aspect mentioned in a sentence and the sentiment associated with the aspect. The results of three different input level adversarial attacks in the black box setting indicate that the use of leet speak, misspellings, and additional punctuation marks has a strong impact on the model and alter the output. The attacks are conducted using the SemEval 2015 Dataset[[1]](#1) for ABSA and a TripAdvisor Hotel Review Dataset for Sentiment Analysis.
+This is the complementary code used in my Master's Thesis to explore the robustness of a BERT model used for the ABSA-task, a fine-grained sentiment analysis task that extracts both the aspect mentioned in a sentence and the sentiment associated with the aspect. The results of three different input level adversarial attacks in the black box setting indicate that the use of leet speak, misspellings, and additional punctuation marks has a strong impact on the model and alter the output. The attacks are conducted using the SemEval 2015 Dataset [[1]](#1) for ABSA and a TripAdvisor Hotel Review Dataset for Sentiment Analysis.
 
 ## Target Models
 
@@ -19,7 +19,7 @@ Moreover, this repo includes the code for attacking the [BERT base Mulitlingual 
 **Adversarial examples** are small, and often imperceptible perturbations applied to the input data in an effort to fool a deep classifier to incorrect classification [[4]](#4). These examples are a way to highlight model vulnerabilities and are useful for evaluation and interpretation of machine learning models. 
 I generated adversarial text to attack a BERT model used for Sentiment Classification and ABSA by conducting non-targeted attacks in the black-box setting on the character level.
 
-Using the **Leave One Out Method**[[5]](#5) for the 'important word' detection, I determine the word which has a critical influence on the model's prediction. I remove each word of a sentence one by one and let the model predict the incomplete sentences. 
+Using the **Leave One Out Method** [[5]](#5) for the 'important word' detection, I determine the word which has a critical influence on the model's prediction. I remove each word of a sentence one by one and let the model predict the incomplete sentences. 
 Comparing the prediction before and after a word is removed reflects how the word influences the classification result. This procedure allows me to enhance the efficiency of my attacks.
 
 To execute the perturbations, I focus on the input level rather than the embedding or semantic level. 
@@ -27,7 +27,6 @@ To execute the perturbations, I focus on the input level rather than the embeddi
 ## Perturbations
 
 I execute the attacks using three methods:
-
 ##### **133t 5p34k**
 Testing the effect of [Leet Speak](https://en.wikipedia.org/wiki/Leet) on the BERT model
 ##### **Mispeelings**
@@ -43,7 +42,7 @@ Testing the influence of one additional comma after the important word.
 |Total number of modifyable original sentences | 897 | 369 | 943
 |Total number of modifies sentences | 2232 | 1354 | 2555
 |Total number of changed predictions through modification | 1066 | 420 | 382
-|Modification Ratio | 47.76% | 31.02% | 14.95%
+**|Modification Ratio | 47.76% | 31.02% | 14.95%**
 
 
 ## Results Sentiment Analysis
@@ -52,7 +51,7 @@ Testing the influence of one additional comma after the important word.
 | -------- | ---------------------- | ------------------- | ------------------- |
 |Size original Dataset | 435 | 435 | 435
 |Size adversarial Dataset | 183 | 330 | 56
-|Modification Ratio | 42.01% | 75.86% | 12.87%
+**|Modification Ratio | 42.01% | 75.86% | 12.87%**
 
 ## References
 <a id="1">[1]</a>
